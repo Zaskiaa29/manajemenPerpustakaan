@@ -17,8 +17,12 @@ class CategoryController extends Controller
     // 2. Menyimpan Kategori Baru
     public function store(Request $request)
     {
-        $request->validate(['nama_kategori' => 'required']);
+        $request->validate([
+            'nama_kategori' => 'required'
+        ]);
+
         Category::create($request->all());
+
         return redirect()->route('categories.index')->with('success', 'Kategori berhasil ditambah');
     }
 
@@ -28,11 +32,15 @@ class CategoryController extends Controller
         return view('categories.edit', compact('category'));
     }
 
-    // 4. Memperbarui Data (HANYA BOLEH ADA SATU FUNGSI UPDATE)
+    // 4. Memperbarui Data Kategori
     public function update(Request $request, Category $category)
     {
-        $request->validate(['nama_kategori' => 'required']);
+        $request->validate([
+            'nama_kategori' => 'required'
+        ]);
+        
         $category->update($request->all());
+
         return redirect()->route('categories.index')->with('success', 'Kategori berhasil diupdate');
     }
 
@@ -40,6 +48,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+        
         return redirect()->route('categories.index')->with('success', 'Kategori berhasil dihapus');
     }
 }

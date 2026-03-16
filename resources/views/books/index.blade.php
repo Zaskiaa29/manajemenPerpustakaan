@@ -54,18 +54,27 @@
                     <th>Penulis</th>
                     <th>Tahun</th>
                     <th>Stok</th>
+                    <th>Cover</th>
                     <th width="150">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($books as $key => $book)
                 <tr>
+
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $book->judul }}</td>
                     <td>{{ $book->penulis }}</td>
                     <td>{{ $book->tahun_terbit }}</td>
                     <td>
                         <span class="badge bg-info">{{ $book->stok }}</span>
+                    </td>
+                    <td>
+                        @if($book->cover)
+                             <img src="{{ asset($book->cover) }}" alt="Cover Buku" width="100">
+                        @else
+                            <span class="badge bg-secondary">Tidak ada gambar</span>
+                        @endif
                     </td>
                     <td>
                         <a href="{{ route('books.edit',$book->id) }}" 

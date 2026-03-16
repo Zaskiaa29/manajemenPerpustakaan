@@ -11,7 +11,8 @@ class Book extends Model
         'judul',
         'penulis',
         'tahun_terbit',
-        'stok'
+        'stok',
+        'cover'
     ];
 
     public function category()
